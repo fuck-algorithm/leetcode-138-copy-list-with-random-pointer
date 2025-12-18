@@ -1,0 +1,155 @@
+/* Step Controller Styles */
+.step-controller-container {
+  background-color: var(--card-background);
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.step-controller {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.control-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--card-background);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 80px;
+}
+
+.control-button:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.control-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.control-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.control-button .icon {
+  font-size: 20px;
+}
+
+.control-button .shortcut {
+  font-size: 11px;
+  color: var(--text-secondary);
+  background-color: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.control-button.reset-button:not(:disabled):hover {
+  border-color: #ff4d4f;
+  color: #ff4d4f;
+}
+
+.control-button.play-button:not(:disabled):hover {
+  border-color: #52c41a;
+  color: #52c41a;
+}
+
+.step-indicator {
+  font-size: 14px;
+  color: var(--text-secondary);
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Progress Bar Styles */
+.progress-bar-container {
+  width: 100%;
+  padding: 0 24px 16px 24px;
+}
+
+.progress-bar-wrapper {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background-color: #e8e8e8;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.progress-bar-wrapper:hover {
+  height: 10px;
+}
+
+.progress-bar-wrapper:hover .progress-bar-fill {
+  height: 10px;
+}
+
+.progress-bar-wrapper:hover .progress-bar-thumb {
+  width: 16px;
+  height: 16px;
+  top: -3px;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 8px;
+  background: linear-gradient(90deg, #52c41a, #73d13d);
+  border-radius: 4px;
+  transition: width 0.1s ease-out, height 0.1s ease-out;
+}
+
+.progress-bar-thumb {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: #52c41a;
+  border: 2px solid white;
+  border-radius: 50%;
+  top: -3px;
+  transform: translateX(-50%);
+  cursor: grab;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: width 0.1s ease-out, height 0.1s ease-out, top 0.1s ease-out;
+}
+
+.progress-bar-thumb:active {
+  cursor: grabbing;
+  transform: translateX(-50%) scale(1.1);
+}
+
+.progress-bar-thumb:hover {
+  box-shadow: 0 2px 8px rgba(82, 196, 26, 0.4);
+}
+
+/* Progress time labels */
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Focus styles for accessibility */
+.control-button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.progress-bar-wrapper:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}

@@ -1,0 +1,301 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1890ff;
+  --secondary-color: #52c41a;
+  --background-color: #f5f5f5;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --text-secondary: #666666;
+  --border-color: #e8e8e8;
+  --highlight-color: #fff3cd;
+  --next-pointer-color: #1890ff;
+  --random-pointer-color: #ff4d4f;
+  --node-color: #e6f7ff;
+  --node-highlight-color: #bae7ff;
+  --copy-node-color: #f6ffed;
+  --copy-node-highlight-color: #d9f7be;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* Header styles moved to src/components/Header.css */
+
+/* Main Content Layout */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.left-panel {
+  width: 45%;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  background-color: var(--card-background);
+  overflow: hidden;
+}
+
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-background);
+  overflow: hidden;
+}
+
+
+/* Code Debugger styles moved to src/components/CodeDebugger.css */
+
+/* Canvas Styles */
+.canvas-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.step-description {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  padding: 12px 16px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* Step Controller styles moved to src/components/StepController.css */
+
+/* Floating Ball Styles */
+.floating-ball {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1000;
+}
+
+.floating-ball:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(24, 144, 255, 0.5);
+}
+
+.floating-ball .icon {
+  font-size: 20px;
+}
+
+.floating-ball .text {
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.qr-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  text-align: center;
+}
+
+.qr-popup img {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.qr-popup p {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Node Styles for D3 */
+.node-group {
+  cursor: pointer;
+}
+
+.node-rect {
+  stroke-width: 2px;
+  transition: all 0.3s;
+}
+
+.node-rect.original {
+  fill: var(--node-color);
+  stroke: var(--primary-color);
+}
+
+.node-rect.original.highlighted {
+  fill: var(--node-highlight-color);
+  stroke-width: 3px;
+}
+
+.node-rect.copy {
+  fill: var(--copy-node-color);
+  stroke: var(--secondary-color);
+}
+
+.node-rect.copy.highlighted {
+  fill: var(--copy-node-highlight-color);
+  stroke-width: 3px;
+}
+
+.node-value {
+  font-size: 16px;
+  font-weight: 600;
+  fill: var(--text-color);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.node-index {
+  font-size: 11px;
+  fill: var(--text-secondary);
+  text-anchor: middle;
+}
+
+.pointer-line {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.pointer-line.next {
+  stroke: var(--next-pointer-color);
+}
+
+.pointer-line.random {
+  stroke: var(--random-pointer-color);
+  stroke-dasharray: 5, 5;
+}
+
+.pointer-line.animating {
+  stroke-width: 3px;
+}
+
+/* Prism.js syntax highlighting moved to src/components/CodeDebugger.css */
+
+
+/* Additional responsive and polish styles */
+@media (max-width: 1200px) {
+  .left-panel {
+    width: 40%;
+    min-width: 350px;
+  }
+}
+
+/* Control button transitions moved to src/components/StepController.css */
+
+/* Code debugger scrollbar moved to src/components/CodeDebugger.css */
+
+/* Canvas SVG styling */
+.linked-list-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+}
+
+/* Variable display styling moved to src/components/CodeDebugger.css */
+
+/* Step description animation */
+.step-description {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating ball pulse animation */
+.floating-ball {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(24, 144, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4);
+  }
+}
+
+/* QR popup animation */
+.qr-popup {
+  animation: slideUp 0.2s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus styles for accessibility */
+.control-button:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Header focus styles moved to src/components/Header.css */

@@ -1,0 +1,87 @@
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: var(--card-background);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-title h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.header-title h1 a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.header-title h1 a:hover {
+  color: var(--primary-color);
+}
+
+.leetcode-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.leetcode-link:hover {
+  background-color: rgba(24, 144, 255, 0.1);
+  text-decoration: none;
+}
+
+.leetcode-link .arrow {
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+
+.leetcode-link:hover .arrow {
+  transform: translateX(2px);
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.github-link:hover {
+  color: var(--primary-color);
+  background-color: rgba(24, 144, 255, 0.1);
+}
+
+.github-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Focus styles for accessibility */
+.github-link:focus-visible,
+.leetcode-link:focus-visible,
+.header-title h1 a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}

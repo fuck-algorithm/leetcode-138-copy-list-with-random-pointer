@@ -1,0 +1,141 @@
+# Implementation Plan
+
+- [x] 1. Initialize project with Vite + React + TypeScript
+  - [x] 1.1 Create Vite project with React and TypeScript template
+    - Initialize project using `npm create vite@latest`
+    - Configure TypeScript strict mode
+    - _Requirements: 5.1, 5.2_
+  - [x] 1.2 Install and configure dependencies
+    - Install D3.js, Prism.js for syntax highlighting
+    - Install fast-check for property-based testing, Vitest for unit testing
+    - _Requirements: 3.1, 5.2, 5.3_
+  - [x] 1.3 Set up ESLint and Prettier
+    - Configure ESLint with TypeScript rules
+    - Configure Prettier for code formatting
+    - _Requirements: 5.3_
+  - [x] 1.4 Create GitHub Actions workflow for deployment
+    - Create `.github/workflows/deploy.yml`
+    - Configure build and deploy to GitHub Pages
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
+
+- [x] 2. Implement core data models and algorithm steps
+  - [x] 2.1 Define TypeScript interfaces for linked list and visualization
+    - Create `types/index.ts` with all interfaces
+    - Define ListNode, VisualNode, Step, AlgorithmState interfaces
+    - _Requirements: 4.1, 6.1_
+  - [x] 2.2 Implement algorithm step generator
+    - Create `utils/algorithmSteps.ts`
+    - Generate all steps for the copy random list algorithm
+    - Include code line mapping and variable states for each step
+    - _Requirements: 3.2, 6.1, 6.2_
+  - [x] 2.3 Write property test for step navigation
+    - **Property 1: Step Navigation Consistency**
+    - **Validates: Requirements 2.1, 2.2**
+  - [x] 2.4 Write property test for step information completeness
+    - **Property 6: Step Information Completeness**
+    - **Validates: Requirements 6.2, 6.3**
+
+- [x] 3. Implement layout and header components
+  - [x] 3.1 Create App component with single-screen layout
+    - Implement flexbox layout for left panel (code) and right panel (canvas)
+    - Add bottom panel for step controller
+    - _Requirements: 1.3_
+  - [x] 3.2 Create Header component
+    - Display LeetCode problem title with link to problem page
+    - Add GitHub icon in top-right corner with link to repository
+    - _Requirements: 1.1, 1.2_
+  - [x] 3.3 Create FloatingBall component
+    - Position in bottom-right corner
+    - Show WeChat group icon with "交流群" text
+    - Display QR code image on hover with instructions
+    - Download and add QR code image to static assets
+    - _Requirements: 1.4, 1.5_
+
+- [x] 4. Implement code debugger component
+  - [x] 4.1 Create CodeDebugger component with syntax highlighting
+    - Display Java code with Prism.js syntax highlighting
+    - Add line numbers column
+    - Highlight current executing line based on step
+    - _Requirements: 3.1, 3.2, 3.4_
+  - [x] 4.2 Create VariableInspector inline display
+    - Show variable values after corresponding code lines
+    - Format pointer variables with reference notation
+    - _Requirements: 3.3, 3.5_
+  - [x] 4.3 Write property test for variable display
+    - **Property 4: Variable Display Completeness**
+    - **Validates: Requirements 3.3, 3.5**
+
+- [x] 5. Implement D3.js linked list canvas
+  - [x] 5.1 Create LinkedListCanvas component
+    - Set up D3.js SVG canvas
+    - Render original and copied linked list nodes
+    - Display node values and indices
+    - _Requirements: 4.1, 4.5_
+  - [x] 5.2 Implement pointer rendering
+    - Draw next pointers as solid arrows
+    - Draw random pointers as dashed arrows with distinct colors
+    - Add pointer labels
+    - _Requirements: 4.2_
+  - [x] 5.3 Implement node highlighting and animations
+    - Highlight currently processed node
+    - Add animation for node creation and pointer updates
+    - _Requirements: 4.3, 4.4, 4.6_
+  - [x] 5.4 Add step description display on canvas
+    - Show current step description
+    - Indicate original-to-copy node correspondence
+    - _Requirements: 4.5, 6.2, 6.3_
+  - [x] 5.5 Write property test for node visualization
+    - **Property 5: Node Visualization Completeness**
+    - **Validates: Requirements 4.1, 4.6**
+
+- [x] 6. Implement step controller with keyboard shortcuts
+  - [x] 6.1 Create StepController component
+    - Add Previous, Next, Play/Pause buttons
+    - Display keyboard shortcut hints on buttons (←, →, Space)
+    - Disable Previous at first step, Next at last step
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6_
+  - [x] 6.2 Implement keyboard event handling
+    - Bind Left Arrow to previous step
+    - Bind Right Arrow to next step
+    - Bind Space to play/pause toggle
+    - _Requirements: 2.1, 2.2, 2.3_
+  - [x] 6.3 Implement auto-play functionality
+    - Toggle between playing and paused states
+    - Auto-advance steps at configurable speed
+    - _Requirements: 2.3_
+  - [x] 6.4 Write property test for play/pause toggle
+    - **Property 2: Play/Pause Toggle Idempotence**
+    - **Validates: Requirements 2.3**
+
+- [x] 7. Integrate all components and state synchronization
+  - [x] 7.1 Implement global state management
+    - Create useAlgorithmState custom hook
+    - Manage currentStep, isPlaying, steps array
+    - _Requirements: 6.1_
+  - [x] 7.2 Wire up state synchronization
+    - Connect step changes to CodeDebugger, LinkedListCanvas, StepController
+    - Ensure all components update simultaneously on step change
+    - _Requirements: 6.1_
+  - [x] 7.3 Write property test for state synchronization
+    - **Property 3: Code-Canvas State Synchronization**
+    - **Validates: Requirements 3.2, 3.3, 6.1**
+
+- [x] 8. Checkpoint - Ensure all tests pass
+  - Ensure all tests pass, ask the user if questions arise.
+
+- [x] 9. Final polish and deployment verification
+  - [x] 9.1 Add responsive styling and visual polish
+    - Ensure single-screen layout works on standard desktop resolutions
+    - Add hover effects and transitions
+    - _Requirements: 1.3_
+  - [x] 9.2 Verify local build and lint
+    - Run `npm run build` to verify no compilation errors
+    - Run `npm run lint` to verify no ESLint errors
+    - _Requirements: 5.2, 5.3_
+  - [x] 9.3 Test GitHub Actions deployment
+    - Push to main branch and verify deployment succeeds
+    - Verify site is accessible at GitHub Pages URL
+    - _Requirements: 5.4, 5.5_
+
+- [x] 10. Final Checkpoint - Ensure all tests pass
+  - Ensure all tests pass, ask the user if questions arise.
