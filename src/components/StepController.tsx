@@ -24,7 +24,6 @@ export function StepController({
   onNext,
   onPlayPause,
   onSeek,
-  onReset,
 }: StepControllerProps) {
   const progressBarRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
@@ -69,6 +68,7 @@ export function StepController({
     [calculateStepFromPosition, onSeek]
   );
 
+
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (!onSeek) return;
@@ -89,15 +89,11 @@ export function StepController({
   return (
     <div className="step-controller-container">
       <div className="step-controller">
-        <button className="control-button reset-button" onClick={onReset} disabled={currentStep === 0 && !isPlaying} aria-label="重置" title="重置 (R)">
-          <span className="icon">⏹</span>
-          <span className="shortcut">R</span>
-        </button>
         <button className="control-button" onClick={onPrevious} disabled={!canGoPrevious} aria-label="上一步" title="上一步 (←)">
           <span className="icon">⏮</span>
           <span className="shortcut">←</span>
         </button>
-        <button className="control-button play-button" onClick={onPlayPause} aria-label={isPlaying ? '暂停' : '播放'} title={isPlaying ? '暂停 (Space)' : '播放 (Space)'}>
+        <button className="control-button" onClick={onPlayPause} aria-label={isPlaying ? '暂停' : '播放'} title={isPlaying ? '暂停 (Space)' : '播放 (Space)'}>
           <span className="icon">{isPlaying ? '⏸' : '▶'}</span>
           <span className="shortcut">Space</span>
         </button>
